@@ -19,10 +19,12 @@
          */
         public static function create($gate = '') {
             $result = false;
-            $path = self::getPath().$gate.'.php';
-            if ($gate && file_exists($path)) {
-                require_once 'SmsGateInterface.php';
-                require_once $path;
+            $basePath = self::getBasePath();
+            $gatePath = $basePath.'gates'.DIRECTORY_SEPARATOR.$gate.'.php';
+            if ($gate && file_exists($gatePath)) {
+                require_once $basePath.'SmsGateAbstract.php';
+                require_once $basePath.'SmsGateInterface.php';
+                require_once $gatePath;
                 $result = new $gate();
             }
             else {
@@ -53,8 +55,8 @@
          *
          * @return string
          */
-        private static function getPath() {
-            return dirname(__FILE__).DIRECTORY_SEPARATOR.'gates'.DIRECTORY_SEPARATOR;
+        private static function getBasePath() {
+            return dirname(__FILE__).DIRECTORY_SEPARATOR;
         }
 
     }

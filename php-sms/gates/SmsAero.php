@@ -9,14 +9,14 @@
     /**
      * Класс для работы с API SMS Aero (@link http://smsaero.ru/)
      */
-    class SmsAero implements SmsGateInterface {
+    class SmsAero extends SmsGateAbstract implements SmsGateInterface {
 
         /**
          * URL запроса
          *
          * @var string
          */
-        private $url = 'http://gate.smsaero.ru/';
+        protected $url = 'http://gate.smsaero.ru/';
 
         /**
          * Логин в системе SMS Aero
@@ -118,40 +118,6 @@
             }
             $result = $this->api('send', $params);
             return ($json)? json_decode($result, true): $result;
-        }
-
-        /**
-         * Выполняте запрос к API сервиса
-         *
-         * @param string $action Метод API
-         * @param array $params Дополнительные параметры
-         */
-        private function api($action, $params = array()) {
-            $response = '';
-            if ($action) {
-                $url = $this->buildQuery($action, $params);
-                $resource = curl_init($url);
-                curl_setopt_array($resource, array(
-                    CURLOPT_RETURNTRANSFER => true
-                ));
-                $response = curl_exec($resource);
-            }
-            return $response;
-        }
-
-        /**
-         * Формирует URL-запроса
-         *
-         * @param string $action Метод API
-         * @param array $params Дополнительные параметры
-         * @return string
-         */
-        private function buildQuery($action, $params = array()) {
-            $url = $this->url.trim($action, '/').'/';
-            if (count($params)) {
-                $url .= '?'.http_build_query($params);
-            }
-            return $url;
         }
 
     }
