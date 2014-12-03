@@ -4,16 +4,22 @@
 **Пример работы**
 
 ```php
-require_once './php-sms/SmsFactory.php';
+require_once './PhpSms/Autoloader.php';
 
-$sms = SmsFactory::create('SmsAero');
-$sms->setUser('<login>');
-$sms->setPassword('<password>');
-$sms->setTo('75551234567');
-$sms->setFrom('php-sms');
-$sms->setText('Test message');
-$sms->send();
+PhpSms\Autoloader::register();
 
+$sender = PhpSms\GateFactory::create('SmsAero');
+
+$sender->setUser('<login>');
+$sender->setPassword('<password>');
+
+$message = new PhpSms\Message();
+$message->setTo('75551234567');
+$message->setFrom('php-sms');
+$message->setText('Message');
+
+$sender->setMessage($message);
+$sender->send();
 ```
 **Доступные гейты**
 

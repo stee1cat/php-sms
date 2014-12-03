@@ -6,10 +6,12 @@
      * @link https://github.com/stee1cat/php-sms
      */
 
+    namespace PhpSms\Log;
+
     /**
      * Файловый логгер
      */
-    class SmsFileLog {
+    class FileWriter {
 
         /**
          * Путь к файлу лога
@@ -49,12 +51,13 @@
          * Устанавливает путь к лог-файлу
          *
          * @param string $file
+         * @throws \Exception
          */
         public function setFile($file) {
             $this->file = $file;
             $this->resource = fopen($file, 'a');
             if (!$this->resource) {
-                throw new Exception("Log file '".$file."' not open!", 1);
+                throw new \Exception("Log file '".$file."' not open!", 1);
             }
         }
 

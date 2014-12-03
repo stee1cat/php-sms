@@ -6,24 +6,27 @@
      * @link https://github.com/stee1cat/php-sms
      */
 
+    namespace PhpSms\Gate;
+    use PhpSms\Log;
+
     /**
      * Абстрактный класс для SMS-гейта реализующий общие методы
      */
-    abstract class SmsGateAbstract {
+    abstract class GateAbstract {
 
         /**
          * Объект лога
          *
-         * @var SmsFileLog
+         * @var Log\FileWriter
          */
         protected $log = null;
 
         /**
          * Сеттер для установки лог врайтера
          *
-         * @param SmsFileLog $writer
+         * @param Log\FileWriter $writer
          */
-        public function setLogWriter($writer) {
+        public function setLogWriter(Log\FileWriter $writer) {
             $this->log = $writer;
         }
 
@@ -32,6 +35,7 @@
          *
          * @param string $action Метод API
          * @param array $params Дополнительные параметры
+         * @return mixed|string
          */
         protected function api($action, $params = array()) {
             $response = '';

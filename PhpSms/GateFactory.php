@@ -6,29 +6,26 @@
      * @link https://github.com/stee1cat/php-sms
      */
 
+    namespace PhpSms;
+    use PhpSms\Gate;
+
     /**
      * Класс фабрики
      */
-    class SmsFactory {
+    class GateFactory {
 
         /**
          * Метод получения объекта для работы с API SMS-гейта
          *
          * @param string $gate Имя SMS-гейта
-         * @return object
+         * @throws \Exception
+         * @return Gate\GateAbstract|Gate\GateInterface
          */
         public static function create($gate = '') {
             $result = false;
-            $basePath = self::getBasePath();
-            $gatePath = $basePath.'gates'.DIRECTORY_SEPARATOR.$gate.'.php';
-            if ($gate && file_exists($gatePath)) {
-                require_once $basePath.'SmsGateAbstract.php';
-                require_once $basePath.'SmsGateInterface.php';
-                require_once $gatePath;
-                $result = new $gate();
-            }
-            else {
-                throw new Exception("SMS gate '".$gate."' not found!", 1);
+            $gateClass = 'PhpSms\\Gate\\'.$gate;
+            if ($gate && $gateClass) {
+                $result = new $gateClass();
             }
             return $result;
         }
@@ -40,10 +37,11 @@
          */
         public static function getGates() {
             $result = array();
-            $list = scandir(self::getPath());
-            foreach ($list as $key => $file) {
+            $list = scandir(self::getBasePath().'Gate');
+            foreach ($list as $file) {
                 $match = array();
-                if (preg_match('/^(.+)\.php$/iu', $file, $match)) {
+                $ignore = array('GateAbstract', 'GateInterface');
+                if (preg_match('/^(.+)\.php$/iu', $file, $match) && !in_array($match[1], $ignore)) {
                     $result[] = $match[1];
                 }
             }
