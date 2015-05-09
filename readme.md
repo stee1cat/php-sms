@@ -24,3 +24,4 @@ $sender->send();
 **Доступные гейты**
 
 * [Sms Aero](http://smsaero.ru/)
+* [SMS.ru](http://sms.ru/)
