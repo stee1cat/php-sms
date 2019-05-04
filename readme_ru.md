@@ -1,6 +1,7 @@
-# A PHP library to send messages via SMS gates
+# Библиотека для отправки коротких сообщений через SMS-гейты
 
-**Examle**
+
+**Пример работы**
 
 ```php
 require_once './PhpSms/Autoloader.php';
@@ -20,7 +21,7 @@ $message->setText('Message');
 $sender->setMessage($message);
 $sender->send();
 ```
-**Available agents**
+**Доступные гейты**
 
 * [Sms Aero](http://smsaero.ru/)
 * [SMS.ru](http://sms.ru/)
