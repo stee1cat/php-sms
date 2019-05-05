@@ -6,9 +6,9 @@
  * @link https://github.com/stee1cat/php-sms
  */
 
-namespace PhpSms\Gate;
+namespace stee1cat\PhpSms\Gate;
 
-use PhpSms\Log;
+use stee1cat\PhpSms\Log\FileWriter;
 
 /**
  * Абстрактный класс для SMS-гейта реализующий общие методы
@@ -18,16 +18,16 @@ abstract class GateAbstract
     /**
      * Объект лога
      *
-     * @var Log\FileWriter
+     * @var FileWriter
      */
     protected $log = null;
 
     /**
      * Сеттер для установки лог врайтера
      *
-     * @param Log\FileWriter $writer
+     * @param FileWriter $writer
      */
-    public function setLogWriter(Log\FileWriter $writer)
+    public function setLogWriter(FileWriter $writer)
     {
         $this->log = $writer;
     }

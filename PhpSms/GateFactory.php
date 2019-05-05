@@ -6,9 +6,10 @@
  * @link https://github.com/stee1cat/php-sms
  */
 
-namespace PhpSms;
+namespace stee1cat\PhpSms;
 
-use PhpSms\Gate;
+use stee1cat\PhpSms\Gate\GateAbstract;
+use stee1cat\PhpSms\Gate\GateInterface;
 
 /**
  * Класс фабрики
@@ -20,12 +21,12 @@ class GateFactory
      *
      * @param string $gate Имя SMS-гейта
      * @throws \Exception
-     * @return Gate\GateAbstract|Gate\GateInterface
+     * @return GateAbstract|GateInterface
      */
     public static function create($gate = '')
     {
         $result = false;
-        $gateClass = 'PhpSms\\Gate\\'.$gate;
+        $gateClass = 'stee1cat\\PhpSms\\Gate\\'.$gate;
         if ($gate && $gateClass) {
             $result = new $gateClass();
         }

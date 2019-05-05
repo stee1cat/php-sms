@@ -6,9 +6,9 @@
  * @link https://github.com/stee1cat/php-sms
  */
 
-namespace PhpSms\Gate;
+namespace stee1cat\PhpSms\Gate;
 
-use PhpSms\Message;
+use stee1cat\PhpSms\Message;
 
 interface GateInterface
 {

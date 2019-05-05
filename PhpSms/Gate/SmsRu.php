@@ -1,9 +1,8 @@
 <?php
 
-namespace PhpSms\Gate;
+namespace stee1cat\PhpSms\Gate;
 
-use PhpSms;
-use PhpSms\Message;
+use stee1cat\PhpSms\Message;
 
 /**
  * Класс для работы с API SMS.RU (@link http://sms.ru/)
@@ -27,7 +26,7 @@ class SmsRu extends GateAbstract implements GateInterface
     /**
      * Сообщение
      *
-     * @var PhpSms\Message
+     * @var Message
      */
     private $message;
 
@@ -62,7 +61,7 @@ class SmsRu extends GateAbstract implements GateInterface
      */
     public function send($json = true)
     {
-        if ($this->message instanceof PhpSms\Message) {
+        if ($this->message instanceof Message) {
             $params = array(
                 'api_id' => $this->apiId,
                 'from' => $this->message->getFrom(),

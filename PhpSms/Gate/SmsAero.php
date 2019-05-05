@@ -6,9 +6,9 @@
  * @link https://github.com/stee1cat/php-sms
  */
 
-namespace PhpSms\Gate;
+namespace stee1cat\PhpSms\Gate;
 
-use PhpSms;
+use stee1cat\PhpSms\Message;
 
 /**
  * Класс для работы с API SMS Aero (@link http://smsaero.ru/)
@@ -39,7 +39,7 @@ class SmsAero extends GateAbstract implements GateInterface
     /**
      * Сообщение
      *
-     * @var PhpSms\Message
+     * @var Message
      */
     private $message;
 
@@ -63,7 +63,7 @@ class SmsAero extends GateAbstract implements GateInterface
         $this->password = md5($password);
     }
 
-    public function setMessage(PhpSms\Message $message)
+    public function setMessage(Message $message)
     {
         $this->message = $message;
     }
@@ -77,7 +77,7 @@ class SmsAero extends GateAbstract implements GateInterface
      */
     public function send($json = true)
     {
-        if ($this->message instanceof PhpSms\Message) {
+        if ($this->message instanceof Message) {
             $params = array(
                 'user' => $this->user,
                 'password' => $this->password,

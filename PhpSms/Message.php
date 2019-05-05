@@ -6,7 +6,7 @@
  * @link https://github.com/stee1cat/php-sms
  */
 
-namespace PhpSms;
+namespace stee1cat\PhpSms;
 
 class Message
 {

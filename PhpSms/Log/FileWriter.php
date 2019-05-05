@@ -6,7 +6,7 @@
  * @link https://github.com/stee1cat/php-sms
  */
 
-namespace PhpSms\Log;
+namespace stee1cat\PhpSms\Log;
 
 /**
  * Файловый логгер
