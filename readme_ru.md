@@ -1,19 +1,18 @@
 # Библиотека для отправки коротких сообщений через SMS-гейты
 
 
-**Пример работы**
+## Пример работы
 
 ```php
-require_once './PhpSms/Autoloader.php';
+use stee1cat\PhpSms\GateFactory;
+use stee1cat\PhpSms\Message;
 
-PhpSms\Autoloader::register();
-
-$sender = PhpSms\GateFactory::create('SmsAero');
+$sender = GateFactory::create('SmsAero');
 
 $sender->setUser('<login>');
 $sender->setPassword('<password>');
 
-$message = new PhpSms\Message();
+$message = new Message();
 $message->setTo('75551234567');
 $message->setFrom('php-sms');
 $message->setText('Message');
@@ -21,7 +20,8 @@ $message->setText('Message');
 $sender->setMessage($message);
 $sender->send();
 ```
-**Доступные гейты**
+
+## Доступные гейты
 
 * [Sms Aero](http://smsaero.ru/)
 * [SMS.ru](http://sms.ru/)
