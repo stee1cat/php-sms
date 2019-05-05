@@ -23,6 +23,9 @@
     "autoload": {
         "psr-0": {
             "PhpSms": ""
+        },
+        "psr-4": {
+            "stee1cat\\PhpSms\\": "PhpSms/"
         }
     },
     "require-dev": {
